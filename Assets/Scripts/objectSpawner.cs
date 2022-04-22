@@ -55,6 +55,11 @@ namespace spawner
             componentInWorld.Add(Instantiate(components[5], transform.position, Quaternion.identity));
         }
 
+        public void addLDRToWorld()
+        {
+            componentInWorld.Add(Instantiate(components[6], transform.position, Quaternion.identity));
+        }
+
         public void clear()
         {
 

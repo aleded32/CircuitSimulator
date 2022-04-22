@@ -101,6 +101,7 @@ MonoBehaviour:
   Amp: 0
   voltage: 0
   ohm: 220
+  lightInput: 0
 --- !u!1001 &2354513902318856039
 PrefabInstance:
   m_ObjectHideFlags: 0

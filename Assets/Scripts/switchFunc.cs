@@ -9,6 +9,7 @@ public class switchFunc : MonoBehaviour
     CM.CircuitManager cm;
     public bool switchState;
     bool isPressed;
+    public Sprite[] switchSprites;
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +26,7 @@ public class switchFunc : MonoBehaviour
         if (cm)
         { 
             pressSwitch();
+           
         }
     }
 
@@ -39,7 +41,14 @@ public class switchFunc : MonoBehaviour
                 if (hit.collider.transform.parent.tag == "switch")
                 {
                     switchState = (switchState == true) ? false : true;
-                    Debug.Log(switchState);
+
+                    if (switchState)
+                    {
+                       hit.collider.transform.parent.GetComponent<SpriteRenderer>().sprite = switchSprites[0];
+                    }
+                    else
+                        hit.collider.transform.parent.GetComponent<SpriteRenderer>().sprite = switchSprites[1];
+
                     isPressed = true;
                 }
             }
@@ -47,5 +56,7 @@ public class switchFunc : MonoBehaviour
                 isPressed = false;
         }
     }
+
+    
 
 }

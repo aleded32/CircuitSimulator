@@ -24,16 +24,18 @@ public class buzzerActivation : MonoBehaviour
         {
 
 
-            if (isBuzzerOn())
+            if (isBuzzerOn() && !gameObject.GetComponent<AudioSource>().isPlaying)
             {
-               
+
                 gameObject.GetComponent<AudioSource>().volume = cm.powerCalculation();
                 gameObject.GetComponent<AudioSource>().Play();
+
             }
-            else
+            else if(!isBuzzerOn() && gameObject.GetComponent<AudioSource>().isPlaying)
             {
                 gameObject.GetComponent<AudioSource>().Stop();
             }
+            
         }
     }
 

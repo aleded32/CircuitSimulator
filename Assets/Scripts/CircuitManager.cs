@@ -79,7 +79,7 @@ namespace CM
         public float powerCalculation()
         {
             GameObject battery = componentsInCircuit.Find(x=> x.tag == "battery");
-            resistorsInCircuit = componentsInCircuit.FindAll(x => x.tag == "resistor");
+            resistorsInCircuit = componentsInCircuit.FindAll(x => x.tag == "resistor" || x.tag == "ldr");
 
             float voltage;
             int ohm = 0;
@@ -98,16 +98,18 @@ namespace CM
             {
                 for (int i = 0; i < resistorsInCircuit.Count; i++)
                 {
-                    ohm += resistorsInCircuit[i].GetComponent<componentValue>().ohm + gameObject.GetComponent<componentValue>().ohm;
+                    ohm += resistorsInCircuit[i].GetComponent<componentValue>().ohm;
                 }
             }
 
             float amp = voltage / ohm;
 
+            Debug.Log(ohm);
             
 
             float watt = (amp * voltage);
-            
+
+            Debug.Log(watt);
 
             return watt;
 

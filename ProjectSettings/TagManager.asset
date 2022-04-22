@@ -12,6 +12,7 @@ TagManager:
   - switch
   - speaker
   - output
+  - ldr
   layers:
   - Default
   - TransparentFX
