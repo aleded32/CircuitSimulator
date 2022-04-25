@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using CM;
 
 namespace spawner
@@ -13,6 +14,7 @@ namespace spawner
         public List<GameObject> wiresInWorld;
         CircuitManager cm;
         public switchFunc sw;
+        public Dropdown dd;
 
         // Start is called before the first frame update
         void Start()
@@ -35,30 +37,30 @@ namespace spawner
                 componentInWorld.Add(Instantiate(components[0], transform.position, Quaternion.identity));
         }
 
-        public void addSwitchToWorld()
+        public void addComponents()
         {
-            componentInWorld.Add(Instantiate(components[1], transform.position, Quaternion.identity));
+            switch (dd.value)
+            {
+                case 0:
+                    componentInWorld.Add(Instantiate(components[6], transform.position, Quaternion.identity));
+                    break;
+                case 1:
+                    componentInWorld.Add(Instantiate(components[1], transform.position, Quaternion.identity));
+                    break;
+                case 2:
+                    componentInWorld.Add(Instantiate(components[2], transform.position, Quaternion.identity));
+                    break;
+                case 3:
+                    componentInWorld.Add(Instantiate(components[3], transform.position, Quaternion.identity));
+                    break;
+                case 4:
+                    componentInWorld.Add(Instantiate(components[5], transform.position, Quaternion.identity));
+                    break;
+
+            };
         }
 
-        public void addBulbToWorld()
-        {
-            componentInWorld.Add(Instantiate(components[2], transform.position, Quaternion.identity));
-        }
-
-        public void addResistorToWorld()
-        {
-            componentInWorld.Add(Instantiate(components[3], transform.position, Quaternion.identity));
-        }
-
-        public void addSpeakerToWorld()
-        {
-            componentInWorld.Add(Instantiate(components[5], transform.position, Quaternion.identity));
-        }
-
-        public void addLDRToWorld()
-        {
-            componentInWorld.Add(Instantiate(components[6], transform.position, Quaternion.identity));
-        }
+      
 
         public void clear()
         {
