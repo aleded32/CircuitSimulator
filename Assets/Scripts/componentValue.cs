@@ -7,6 +7,8 @@ public class componentValue : MonoBehaviour
 
     public float Amp;
     public float voltage;
+
+    [HideInInspector]
     public int ohm;
 
     [Range(0.0f, 1.0f)]

@@ -100,7 +100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Amp: 0
   voltage: 0
-  ohm: 220
+  ohm: 0
   lightInput: 0
 --- !u!1001 &2354513902318856039
 PrefabInstance:

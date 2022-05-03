@@ -13,27 +13,51 @@ public class MoveComponent : MonoBehaviour
     bool deleteWire = false;
     objectSpawner os;
     CircuitManager cm;
+    toggleBoxFunc tbf;
+
+    bool isMouseOver;
+    bool isToggleActive;
+
     // Start is called before the first frame update
     private void Start()
     {
         os = FindObjectOfType<objectSpawner>();
+        tbf = FindObjectOfType<toggleBoxFunc>();
     }
 
     // Update is called once per frame
     void Update()
     {
-
+       
         cm = FindObjectOfType<CircuitManager>();
+        isMouseOver = tbf.isMouseOver;
+        isToggleActive = tbf.isToggleActive;
 
-        if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.W))
+        if (Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.W))
         {
             selectObject();
         }
-        else if (Input.GetMouseButtonUp(0) || Input.GetMouseButtonUp(1) && selectedTarget)
+        else if (Input.GetMouseButtonUp(1) && selectedTarget)
         {
-          
-            selectedTarget = null;
+
+            if (!isToggleActive)
+            {
+                selectedTarget = null;
+            }
         }
+
+        if (Input.GetMouseButtonDown(0) && !isMouseOver)
+        {
+            selectObject();
+            if (!selectedTarget)
+                isToggleActive = false;
+
+        }
+
+       
+
+        Debug.Log(selectedTarget);
+
 
         if (Input.GetKeyUp(KeyCode.W))
         {
@@ -50,7 +74,7 @@ public class MoveComponent : MonoBehaviour
 
                     rotateObject();
                 }
-                else if (Input.GetMouseButton(0) && selectedTarget && !cm.componentsInCircuit.Contains(selectedTarget.transform.parent.gameObject))
+                else if (Input.GetMouseButton(0) && selectedTarget && !isMouseOver && !cm.componentsInCircuit.Contains(selectedTarget.transform.parent.gameObject))
                 {
                     selectedTarget.transform.parent.position = new Vector3(mousePos().x, mousePos().y, 0);
                 }
@@ -72,10 +96,12 @@ public class MoveComponent : MonoBehaviour
     {
         Collider2D target = Physics2D.OverlapPoint(mousePos());
 
-        if (target) 
+        if (target)
         {
             selectedTarget = target;
         }
+        else if(!target)
+            selectedTarget = null;
 
         
     }

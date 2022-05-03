@@ -18,6 +18,15 @@ namespace CM
 
         public bool CircuitConnected = false;
 
+        [HideInInspector]
+        public float voltage;
+
+        [HideInInspector]
+        public int ohm;
+
+        [HideInInspector]
+        public float amp;
+
 
         // Start is called before the first frame update
         void Start()
@@ -81,15 +90,15 @@ namespace CM
             GameObject battery = componentsInCircuit.Find(x=> x.tag == "battery");
             resistorsInCircuit = componentsInCircuit.FindAll(x => x.tag == "resistor" || x.tag == "ldr");
 
-            float voltage;
-            int ohm = 0;
+            
+            ohm = 50;
 
             if (battery)
                 voltage = battery.GetComponent<componentValue>().voltage;
             else
                 voltage = 0;
 
-            Debug.Log("voltage " + voltage);
+            
 
 
             if (resistorsInCircuit.Count <= 0)
@@ -102,15 +111,15 @@ namespace CM
                 }
             }
 
-            float amp = voltage / ohm;
+            amp = voltage / ohm;
 
-            Debug.Log(ohm);
-            
+            Debug.Log(amp);
+
+
 
             float watt = (amp * voltage);
 
-            Debug.Log(watt);
-
+          
             return watt;
 
         }
