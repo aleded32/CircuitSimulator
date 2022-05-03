@@ -81,7 +81,8 @@ public class MoveComponent : MonoBehaviour
             }
         }
 
-        WireAdd();
+        if(!cm.CircuitConnected)
+            WireAdd();
 
         
     }

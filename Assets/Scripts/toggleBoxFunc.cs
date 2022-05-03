@@ -71,7 +71,7 @@ public class toggleBoxFunc : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         {
             string compName = mc.selectedTarget.transform.parent.tag;
 
-            if (compName == "speaker" && compName == "bulb")
+            if (compName == "speaker" || compName == "bulb")
             {
                 toggleboxes[2].SetActive(true);
                 toggleboxes[1].SetActive(false);
@@ -122,11 +122,11 @@ public class toggleBoxFunc : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
             
 
-        if (compName == "speaker" && compName == "bulb")
+        if (compName == "speaker" || compName == "bulb")
         {
             toggleboxes[2].transform.GetChild(0).GetComponent<Text>().text = compName;
             toggleboxes[2].transform.GetChild(1).GetComponent<Text>().text = "Voltage:  " + voltage;
-            toggleboxes[2].transform.GetChild(3).GetComponent<Text>().text = "Amps  " + amp;
+            toggleboxes[2].transform.GetChild(2).GetComponent<Text>().text = "Amps  " + amp;
 
         }
         else if (compName == "ldr")
